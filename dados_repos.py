@@ -41,5 +41,16 @@ class DadosRepositorios:
                     nomes_repos.append(None)
 
         return nomes_repos
+    
+    def linguagens_repos(self, repos_list):
+        linguagens_repos = []
+        for page in repos_list:
+            for repo in page:
+                try:
+                    linguagens_repos.append(repo['language'])
+                except:
+                    linguagens_repos.append(None)
+
+        return linguagens_repos
 
     
