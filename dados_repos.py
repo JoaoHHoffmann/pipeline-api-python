@@ -19,4 +19,14 @@ class DadosRepositorios:
             'X-GitHub-Api-Version': '2022-11-28'
         }
 
-    def
+    def lista_repositorios(self):
+        repos_list = []
+        for page in range(1, 20):
+            try:
+                url = f'{self.api_base_url}/users/{self.username}/repos?per_page=100&page={page}'
+                response = requests.get(url, headers=self.headers)
+                repos_list.extend(response.json())
+            except:
+                repos_list.append(None)
+        return repos_list
+    
