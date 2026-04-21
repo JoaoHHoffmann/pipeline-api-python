@@ -23,10 +23,23 @@ class DadosRepositorios:
         repos_list = []
         for page in range(1, 20):
             try:
-                url = f'{self.api_base_url}/users/{self.username}/repos?per_page=100&page={page}'
+                url = f'{self.api_base_url}/users/{self.username}/repos?page={page}'
                 response = requests.get(url, headers=self.headers)
                 repos_list.extend(response.json())
             except:
                 repos_list.append(None)
+
         return repos_list
+    
+    def nomes_repos(self, repos_list):
+        nomes_repos = []
+        for page in repos_list:
+            for repo in page:
+                try:
+                    nomes_repos.append(repo['name'])
+                except:
+                    nomes_repos.append(None)
+
+        return nomes_repos
+
     
